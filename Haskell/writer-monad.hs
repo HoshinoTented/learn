@@ -17,8 +17,8 @@ module Learn.WriterMonad where
     indent :: Int -> ShowS
     indent i = showString (replicate (i * 4) ' ')
 
-    eol :: String
-    eol = "\n"
+    end :: String
+    end = "\n"
     
     merge :: [Int] -> [Int] -> [Int]
     merge xs [] = xs
@@ -32,11 +32,12 @@ module Learn.WriterMonad where
     mergeSort _ [] = return []
     mergeSort _ xs@[_] = return xs
     mergeSort i xs = do
-        tell $ indent i $ showString "mergeSort: " $ shows xs $ eol
+        tell $ indent i $ showString "mergeSort: " $ shows xs $ end
+        
         let (f, s) = splitAt (length xs `div` 2) xs
-        tell $ indent (i + 1) $ showString "merge: " $ shows f $ showChar ' ' $ shows s eol
+        tell $ indent (i + 1) $ showString "merge: " $ shows f $ showChar ' ' $ shows s $ end
 
         w <- liftM2 merge (mergeSort (i + 2) f) (mergeSort (i + 2) s)
-        tell $ indent (i + 1) $ showString "merged: " $ shows w eol
+        tell $ indent (i + 1) $ showString "merged: " $ shows w $ end
 
         return w

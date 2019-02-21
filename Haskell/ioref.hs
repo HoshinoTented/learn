@@ -4,6 +4,17 @@ module Learn.IORef where
     import qualified Data.IORef as IORef
     import qualified System.Environment as Env
 
+    (=>>) :: IORef.IORef a -> (a -> b) -> IO b
+    r =>> f = IORef.readIORef r >>= return . f
+
+    (<<=) :: IORef.IORef a -> a -> IO a
+    r <<= v = do
+        ov <- IORef.readIORef r
+
+        IORef.writeIORef r v
+
+        return ov
+
     sum' :: Int -> Int
     sum' 0 = 0
     sum' n = n + sum' (n - 1)
@@ -20,6 +31,9 @@ module Learn.IORef where
         s <- IORef.newIORef 0
         sum s n
 
-        IORef.readIORef s >>= print
+        x <- s =>> (+1)
+
+        print x
+        print =<< (IORef.readIORef s)
 
         return ()
