@@ -36,3 +36,19 @@ module Learn.StateMonad where
             labelTreeS r >>= \rn ->
                 return $ Node ln (v, i) rn
     
+    push :: a -> State [a] ()
+    push x = state $ \xs -> ((), x:xs)
+
+    pop :: State [a] a
+    pop = state $ \(x:xs) -> (x, xs)
+
+    peek :: State [a] a
+    peek = state $ \x -> (head x, x)
+
+    stack :: State [Int] ()
+    stack = do
+        push 5
+        v <- pop
+        push (v + 1)
+        v <- pop
+        push (v + 2)
