@@ -1,4 +1,4 @@
-module Learn.WriterMonad where
+module WriterMonad where
     import Control.Monad.Writer
 
     left :: Int -> Writer String Int
@@ -10,16 +10,14 @@ module Learn.WriterMonad where
     move :: Int -> Writer String Int
     move b = do
         x <- left b
-        y <- left x
-
-        return y
+        left x
 
     indent :: Int -> ShowS
     indent i = showString (replicate (i * 4) ' ')
 
     end :: String
     end = "\n"
-    
+
     merge :: [Int] -> [Int] -> [Int]
     merge xs [] = xs
     merge [] ys = ys
@@ -33,7 +31,7 @@ module Learn.WriterMonad where
     mergeSort _ xs@[_] = return xs
     mergeSort i xs = do
         tell $ indent i $ showString "mergeSort: " $ shows xs $ end
-        
+
         let (f, s) = splitAt (length xs `div` 2) xs
         tell $ indent (i + 1) $ showString "merge: " $ shows f $ showChar ' ' $ shows s $ end
 

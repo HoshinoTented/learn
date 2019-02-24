@@ -15,14 +15,14 @@ module AdjList where
         show (Node i v xs) = shows i . showChar ' ' . shows v . showChar ' ' $ show xs
 
     concat :: Int -> Node a -> Node a
-    concat i n = concats [i] n
+    concat = concats . (:[])
 
     concats :: [Int] -> Node a -> Node a
     concats i (Node ix v xs) = Node ix v (i ++ xs)
 
     repeatDoM :: (Monad m) => Int -> (Int -> m a) -> m a
     repeatDoM 1 f = f 1
-    repeatDoM i f = f i >> (repeatDoM (i - 1) f)
+    repeatDoM i f = f i >> repeatDoM (i - 1) f
 
     concatNode :: AdjList () -> IO ()
     concatNode v = do
