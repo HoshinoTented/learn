@@ -1,4 +1,4 @@
-module Learn.MutableVector where
+module MutableVector where
 
 import qualified Data.Vector as V
 import qualified Data.Vector.Mutable as M

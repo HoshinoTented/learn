@@ -1,6 +1,6 @@
 {-# LANGUAGE GADTs #-}
 
-module Learn.GADTs where
+module GADTs where
 
 data OldList a = OldNil | OldCons a (OldList a)
 

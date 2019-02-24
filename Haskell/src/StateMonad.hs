@@ -1,4 +1,4 @@
-module Learn.StateMonad where
+module StateMonad where
     import Control.Monad.State
 
     data Tree a = 

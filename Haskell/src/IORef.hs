@@ -1,4 +1,4 @@
-module Learn.IORef where
+module IORef where
 
     import Prelude hiding (sum)
     import qualified Data.IORef as IORef

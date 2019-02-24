@@ -1,4 +1,4 @@
-module Learn.AdjList where
+module AdjList where
 
     import Prelude hiding (concat)
     import qualified Data.Vector.Mutable as M
