@@ -1,0 +1,10 @@
+# idea
+/.idea/
+out/
+
+# gradle
+.gradle/
+build/
+
+# generate
+gen/
