@@ -36,7 +36,6 @@ Char
 
 String
     : '"' Char* '"'
-    | '"' '"'
     ;
 
 Identity
