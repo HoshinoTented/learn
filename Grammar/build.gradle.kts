@@ -11,6 +11,7 @@ version = "1.0-SNAPSHOT"
 sourceSets {
     main.configure {
         java.srcDirs("src/main/gen")
+//        java.srcDirs("gen")
     }
 }
 

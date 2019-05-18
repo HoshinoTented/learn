@@ -26,12 +26,12 @@ Char
     : ~ ["\\\u0000-\u001F]
     ;
 
-Integer
-    : '0' | [1-9] Int*
-    ;
-
 Identity
     : [a-zA-Z] [0-9a-zA-Z]*
+    ;
+
+Integer
+    : '0' | [1-9] Int*
     ;
 
 String
