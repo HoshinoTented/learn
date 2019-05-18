@@ -1,3 +1,4 @@
+#[derive(Debug)]
 enum Message {
     Quit,
     Move { x: i32, y: i32 },
@@ -7,13 +8,13 @@ enum Message {
 
 impl Message {
     fn call(&self) {
-
+        println!("{:?}", self);
     }
 }
 
 pub fn main() {
-    // let m = Message::Write(String::from("qwq"));
-    // m.call();
+    let m = Message::Write(String::from("qwq"));
+    m.call();
 
     let maybe: Option<String> = Option::Some(String::from("qwq"));
     let none: Option<i32> = None;
