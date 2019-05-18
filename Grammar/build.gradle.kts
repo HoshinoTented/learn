@@ -35,5 +35,5 @@ tasks.withType<KotlinCompile> {
 task<JavaExec>("genAntlr") {
     classpath = sourceSets.main.get().runtimeClasspath
     main = "org.hoshino9.antlr.Generate"
-    args(project.properties["grammar"] ?: throw IllegalArgumentException("请传递参数"))
+    args(project.properties["grammar"] ?: "Hoshino")
 }

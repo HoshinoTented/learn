@@ -16,12 +16,12 @@ pub fn main() {
     let m = Message::Write(String::from("qwq"));
     m.call();
 
-    let maybe: Option<String> = Option::Some(String::from("qwq"));
+    let just: Option<String> = Option::Some(String::from("qwq"));
     let none: Option<i32> = None;
 
-    let result = match maybe {
+    let result = match just {
         Some(s) => s,
-        None => String::from("None!")
+        None => String::from("None")
     };
 
     println!("{}", result);
