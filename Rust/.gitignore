@@ -1,0 +1,10 @@
+# cargo
+Cargo.lock
+target/
+
+# idea
+/.idea/
+*.iml
+
+# vscode
+.vscode/
