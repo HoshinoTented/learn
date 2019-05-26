@@ -11,6 +11,8 @@ allprojects {
         plugin("kotlin")
     }
 
+    group = "org.hoshino9"
+
     repositories {
         jcenter()
     }
