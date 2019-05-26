@@ -1,1 +1,1 @@
-pub mod P1001;
+pub mod p1001;
