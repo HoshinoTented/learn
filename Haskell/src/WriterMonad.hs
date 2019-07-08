@@ -1,4 +1,5 @@
 module WriterMonad where
+    
 import Control.Monad.Writer
 
 left :: Int -> Writer String Int

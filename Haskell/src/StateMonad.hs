@@ -36,6 +36,23 @@ labelTreeS (Node l v r) = inc >>= \i ->
         labelTreeS r >>= \rn ->
             return $ Node ln (v, i) rn
 
+push' :: a -> [a] -> ([a], ())
+push' x xs = (x:xs, ())
+
+pop' :: [a] -> ([a], a)
+pop' (x:xs) = (xs, x)
+
+peek' :: [a] -> ([a], a)
+peek' (x:xs) = ((x:xs), x)
+
+stack':: (Num a) => ([a], ())
+stack' = let s = [] in
+    let (s', _) = push' 5 s in
+        let (s'', v) = pop' s' in
+            let (s''', _) = push' (v + 1) s'' in
+                let (s'''', v) = pop' s''' in
+                    push' (v + 2) s''''
+
 push :: a -> State [a] ()
 push x = state $ \xs -> ((), x:xs)
 
