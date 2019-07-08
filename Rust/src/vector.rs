@@ -14,8 +14,4 @@ pub fn main() {
     vec.push(2);
     vec.push(3);
     vec.push(4);
-
-    let v: &i32 = &vec[0];
-
-    println!("{}", v);
 }

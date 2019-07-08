@@ -6,8 +6,9 @@ mod strings;
 mod map;
 mod lg;
 mod ownership;
+mod errors;
 
 fn main() {
     //lg::p1001::main();
-    ownership::main();
+    vector::main();
 }
