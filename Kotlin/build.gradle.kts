@@ -1,24 +1,39 @@
 import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
-val kotlinVersion = "1.3.20"
+buildscript {
+	repositories {
+		maven("http://maven.aliyun.com/nexus/content/groups/public/")
+		jcenter()
+	}
 
-group = "com.github.HoshinoTented"
-version = "1.0"
-
-plugins {
-	kotlin("jvm") version "1.3.20"
+	dependencies {
+		classpath(kotlin("gradle-plugin", version = "1.3.40"))
+	}
 }
 
+plugins {
+	kotlin("jvm") version "1.3.40"
+}
+
+val arrow_version = "0.9.0"
+
 repositories {
-	jcenter()
-	maven("https://jitpack.io")
+	maven("http://maven.aliyun.com/nexus/content/groups/public/")
 }
 
 dependencies {
-	implementation(kotlin("reflect", kotlinVersion))
-	implementation(kotlin("stdlib", kotlinVersion))
+	compile("io.arrow-kt:arrow-core-data:$arrow_version")
+	compile("io.arrow-kt:arrow-core-extensions:$arrow_version")
+	compile("io.arrow-kt:arrow-syntax:$arrow_version")
+	compile("io.arrow-kt:arrow-typeclasses:$arrow_version")
+	compile("io.arrow-kt:arrow-extras-data:$arrow_version")
+	compile("io.arrow-kt:arrow-extras-extensions:$arrow_version")
+	compile("io.arrow-kt:arrow-effects-data:$arrow_version")
+	compile("io.arrow-kt:arrow-effects-io-extensions:$arrow_version")
+	compile("com.google.code.gson", "gson", "2.8.5")
+
 	implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:1.1.1")
-	testImplementation(kotlin("test-junit", kotlinVersion))
+	testImplementation(kotlin("test-junit"))
 }
 
 tasks.withType<KotlinCompile> {
