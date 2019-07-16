@@ -3,7 +3,8 @@ use std::io;
 pub fn main() {
     let mut line = String::new();
 
-    io::stdin().read_line(&mut line);
+    io::stdin().read_line(&mut line)
+        .expect("no no no oh my god!");
 
     let v: Vec<&str> = line.trim().split(' ').collect();
     

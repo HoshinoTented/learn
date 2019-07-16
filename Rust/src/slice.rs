@@ -1,3 +1,7 @@
 pub fn main() {
-    let s = [1, 2, 3];
+    let mut s = [1, 2, 3];
+    let mut i = &s[1];
+    i = &3;
+
+    println!("{}", i);
 }
