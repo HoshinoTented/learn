@@ -1,4 +1,6 @@
 module Main where
 
+import qualified OI as P
+
 main :: IO ()
-main = putStrLn "Hello world!"
+main = P.main

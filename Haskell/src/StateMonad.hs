@@ -6,35 +6,18 @@ data Tree a =
     | Node (Tree a) a (Tree a)
     deriving (Show, Eq)
 
-labelTree :: Tree a -> Tree (a, Int)
-labelTree = fst . labelTree' 0
-
-labelTree' :: Int -> Tree a -> (Tree (a, Int), Int)
-labelTree' n (Leaf a) = (Leaf (a, n), n + 1)
-labelTree' n (Node l v r) = let
-    (cn, n') = ((v, n), (n + 1))
-    (ln, n'') = labelTree' n' l
-    (rn, n''') = labelTree' n'' r in
-        (Node ln cn rn, n''')
-
 inc :: State Int Int
 inc = state $ \x -> (x, x + 1)
 
-labelTreeS :: Tree a -> State Int (Tree (a, Int))
--- labelTreeS (Leaf v) = do
---     i <- inc
---     return $ Leaf (v, i)
--- labelTreeS (Node l v r) = do
---     i <- inc
---     ln <- labelTreeS l
---     rn <- labelTreeS r
-
---     return $ Node ln (v, i) rn
-labelTreeS (Leaf v) = inc >>= (\i -> return $ Leaf (v, i))
-labelTreeS (Node l v r) = inc >>= \i ->
-    labelTreeS l >>= \ln ->
-        labelTreeS r >>= \rn ->
-            return $ Node ln (v, i) rn
+dfs :: Tree a -> State Int (Tree (a, Int))
+dfs (Leaf v) = do
+    i <- inc
+    return $ Leaf (v, i)
+dfs (Node l v r) = do
+    i <- inc
+    left <- dfs l
+    right <- dfs r
+    return $ Node left (v, i) right
 
 push' :: a -> [a] -> ([a], ())
 push' x xs = (x:xs, ())
@@ -69,3 +52,9 @@ stack = do
     push (v + 1)
     v <- pop
     push (v + 2)
+
+sum' :: Int -> State Int Int
+sum' max = do
+    s <- inc
+
+    if s == max then return s else sum' max >>= (return . (+s))

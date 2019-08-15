@@ -27,6 +27,7 @@ library:
   dependencies:
   - vector
   - mtl
+  - text
 
 executables:
   Haskell-exe:
