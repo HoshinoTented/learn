@@ -6,5 +6,3 @@ val submodules = listOf("mo", "du", "le")
     .toTypedArray()
 
 include(":submodules", *submodules)
-
-include(":androids", ":androids:android")
