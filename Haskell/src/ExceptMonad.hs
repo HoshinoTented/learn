@@ -9,7 +9,7 @@ div' :: Integral i => i -> i -> Except String i
 div' a 0 = throwError "Can not be zero"
 div' a b = return $ a `div` b
 
-type Stack s = StateT [s] (Except String)
+-- type Stack s = StateT [s] (Except String)
 
 -- push :: a -> Stack a ()
 -- push i = modify (i:)
@@ -23,6 +23,8 @@ type Stack s = StateT [s] (Except String)
 --         (x:s) -> put s >> return x
 
 type M s m = (MonadError String m, MonadState [s] m)
+type StackST s = StateT [s] (Except String)
+type StackTS s = ExceptT String (State [s])
 
 push :: M a m => a -> m ()
 push i = modify (i:)
