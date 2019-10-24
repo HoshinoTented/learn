@@ -28,6 +28,7 @@ library:
   - vector
   - mtl
   - text
+  - lens
 
 executables:
   Haskell-exe:
