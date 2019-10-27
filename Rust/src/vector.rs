@@ -14,4 +14,11 @@ pub fn main() {
     vec.push(2);
     vec.push(3);
     vec.push(4);
+
+//    let anotherVec = &mut vec;
+    let i = &mut vec[2];
+
+    *i = 5;
+
+    println!("{:?}", vec);
 }
