@@ -23,8 +23,8 @@ div' a b = return $ a `div` b
 --         (x:s) -> put s >> return x
 
 type M s m = (MonadError String m, MonadState [s] m)
-type StackST s = StateT [s] (Except String)
-type StackTS s = ExceptT String (State [s])
+type StackSE s = StateT [s] (Except String)
+type StackES s = ExceptT String (State [s])
 
 push :: M a m => a -> m ()
 push i = modify (i:)
@@ -35,3 +35,18 @@ pop = do
   case xs of
     [] -> throwError "Stack empty"
     x:s -> put s >> pure x
+
+-- Guess Number :: Magic Number -> StateT Bound IO (Guess Count)
+guessNumber :: Int -> StateT (Int, Int) IO Int
+guessNumber num = do
+  (low, high) <- get
+  
+  liftIO $ putStrLn $ "Please guess a number between " ++ show low ++ " and " ++ show high
+
+  guess <- read <$> liftIO getLine
+
+  if guess == num 
+    then (liftIO $ putStrLn "You win!") >> return 1 
+    else if guess < low || high < guess 
+      then (liftIO $ putStrLn "Number out of bounds!") >> guessNumber num 
+      else put (if guess < num then (guess, high) else (low, guess)) >> guessNumber num >>= return . (+1)

@@ -24,11 +24,6 @@ dependencies:
 
 library:
   source-dirs: src
-  dependencies:
-  - vector
-  - mtl
-  - text
-  - lens
 
 executables:
   Haskell-exe:
@@ -40,6 +35,11 @@ executables:
     - -with-rtsopts=-N
     dependencies:
     - Haskell
+    - vector
+    - mtl
+    - text
+    - lens
+    - transformers
 
 tests:
   Haskell-test:

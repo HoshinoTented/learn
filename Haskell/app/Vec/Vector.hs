@@ -1,4 +1,4 @@
-module Vector where
+module Vec.Vector where
 
 import qualified Data.Vector as V
 import Data.Vector ((!))

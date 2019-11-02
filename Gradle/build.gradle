@@ -1,0 +1,13 @@
+plugins {
+    id 'java'
+}
+
+task sayHello() {
+    doLast {
+        println "qwq"
+    }
+}
+
+jar {
+    from "learn-gradle.iml"
+}

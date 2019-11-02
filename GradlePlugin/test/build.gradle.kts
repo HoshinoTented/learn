@@ -1,3 +1,5 @@
+import groovy.lang.Closure
+import org.gradle.util.Configurable
 import org.hoshino9.gradle.learn.HoshinoPluginExtension
 import org.hoshino9.gradle.learn.HoshinoCuteTask
 
@@ -7,26 +9,24 @@ buildscript {
     }
 
     dependencies {
-        classpath("org.hoshino9.gradle.plugins:gradle-plugin:1.0")
+        classpath("org.hoshino9.gradle.plugins:hoshino-plugin:1.0")
     }
 }
 
-apply(plugin = "org.hoshino9.gradle.learn")
+apply(plugin = "org.hoshino9.learn.gradle.plugin")
 
 //plugins {
-//    id("org.hoshino9.gradle.learn") version "1.0"
+//    id("org.hoshino9.learn") version "1.0"
 //}
 
-configure<HoshinoPluginExtension> {
+extensions.configure<HoshinoPluginExtension>("hoshino") {
     message = "Hoshino is very very cute!!!"
 }
 
-println("use extensions")
-
-val hoshi: HoshinoPluginExtension by extensions         // extensions is better
-
-hoshi.message = "Hoshino love hoshino"
+//val hoshi: HoshinoPluginExtension by extensions         // extensions is better
+//
+//hoshi.message = "Hoshino love hoshino"
 
 tasks.register<HoshinoCuteTask>("hoshinoCute") {
-
+    
 }

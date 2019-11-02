@@ -1,6 +1,4 @@
-rootProject.name = "gradle-plugin"
-
-include(":test")
+rootProject.name = "hoshino-plugin"
 
 pluginManagement {
     repositories {
