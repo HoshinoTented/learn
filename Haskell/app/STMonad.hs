@@ -17,3 +17,18 @@ bar = do
     foo r
 
     return r
+
+(+=), (-=), (*=) :: Num a => (forall s. (STRef s a) -> a -> ST s ())
+ref += i = modifySTRef ref (+i)
+ref -= i = modifySTRef ref (subtract i)
+ref *= i = modifySTRef ref (*i)
+
+num :: Int
+num = runST $ do
+    ref <- newSTRef 1
+
+    ref += 2
+    ref -= 1
+    ref *= 3
+
+    readSTRef ref
