@@ -41,6 +41,7 @@ executables:
     - lens
     - transformers
     - aeson
+    - primitive
 
 tests:
   Haskell-test:
