@@ -7,6 +7,7 @@ import           Control.Monad.State
 import           Data.Vector.Mutable                (STVector, new)
 import qualified Data.Vector.Mutable         as MV
 import           Control.Monad.ST
+import           Control.Monad.Primitive
 
 type Index = Int
 type Union s = STVector s Index
@@ -109,11 +110,13 @@ main = do
  
         print $ findingS n
 
-getter :: STVector s a -> [Int] -> ST s a
+getter :: PrimMonad m => MV.MVector (PrimState m) a -> [Int] -> m a
 getter vec [x] = MV.read vec x
 
-setter :: STVector s a -> [Int] -> a -> ST s a
-setter vec [x] = \v -> MV.write vec x v >> return v
+setter :: PrimMonad m => MV.MVector (PrimState m) a -> [Int] -> a -> m a
+setter vec [x] = \v -> do
+    MV.write vec x v
+    return v
 
 likeC :: IO ()
 likeC = print $ runST $ do

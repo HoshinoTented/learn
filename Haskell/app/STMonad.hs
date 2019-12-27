@@ -1,9 +1,18 @@
 {-# LANGUAGE RankNTypes #-}
 
-module STMonad where
+module STMonad (
+      (+=)
+    , (-=)
+    , (*=)
+) where
 
 import Control.Monad.ST
 import Data.STRef
+
+unsafe :: ST s Int
+unsafe = do
+    v <- newSTRef 1
+    readSTRef v
 
 foo :: forall s. STRef s Int -> ST s ()
 foo ref = do
@@ -18,7 +27,7 @@ bar = do
 
     return r
 
-(+=), (-=), (*=) :: Num a => forall s. STRef s a -> a -> ST s ()
+(+=), (-=), (*=) :: Num a => STRef s a -> a -> ST s ()
 ref += i = modifySTRef ref (+i)
 ref -= i = modifySTRef ref (subtract i)
 ref *= i = modifySTRef ref (*i)

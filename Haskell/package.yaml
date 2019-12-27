@@ -42,6 +42,11 @@ executables:
     - transformers
     - aeson
     - primitive
+    - unordered-containers
+    - http-client
+    - wreq
+    - filepath
+    - directory
 
 tests:
   Haskell-test:

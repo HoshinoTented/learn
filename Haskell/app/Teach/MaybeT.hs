@@ -9,7 +9,6 @@ push = modify . (:)
 {-
 MaybeT { runMaybeT :: m (Maybe a) }
 runMaybeT $ MaybeT (State [a]) a :: s -> (Maybe a, s)
-
 -}
 
 pop :: MaybeT (State [a]) a

@@ -3,4 +3,7 @@ module ReaderMonad where
 import Control.Monad.Reader
 
 readLen :: Reader [a] Int
-readLen = reader $ \xs -> length xs
+readLen = do
+    xs <- ask
+
+    return $ length xs

@@ -57,4 +57,6 @@ sum' :: Int -> State Int Int
 sum' max = do
     s <- inc
 
-    if s == max then return s else sum' max >>= (return . (+s))
+    if s == max
+        then return s 
+        else sum' max >>= (return . (+s))
